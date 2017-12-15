@@ -101,9 +101,19 @@ namespace DotNetCore.CAP.Processor
                 _messageDispatchers.Add(messageProcessors);
             }
             returnedProcessors.AddRange(_messageDispatchers);
+            if (processorCount == 2)
+            {
+                returnedProcessors.Add(_provider.GetRequiredService<SubscribeQueuer>());
+            }
+            else
+            {
+                returnedProcessors.Add(_provider.GetRequiredService<PublishQueuer>());
+                returnedProcessors.Add(_provider.GetRequiredService<PublishQueuer>());
+                returnedProcessors.Add(_provider.GetRequiredService<PublishQueuer>());
+                returnedProcessors.Add(_provider.GetRequiredService<PublishQueuer>());
+            }
 
-            returnedProcessors.Add(_provider.GetRequiredService<PublishQueuer>());
-            returnedProcessors.Add(_provider.GetRequiredService<SubscribeQueuer>());
+
             returnedProcessors.Add(_provider.GetRequiredService<FailedProcessor>());
 
             returnedProcessors.Add(_provider.GetRequiredService<IAdditionalProcessor>());

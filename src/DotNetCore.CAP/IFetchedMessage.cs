@@ -9,6 +9,8 @@ namespace DotNetCore.CAP
 
         MessageType MessageType { get; }
 
+        bool Status { get; set; }
+
         void RemoveFromQueue();
 
         void Requeue();
