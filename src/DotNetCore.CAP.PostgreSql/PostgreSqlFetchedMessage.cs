@@ -26,7 +26,6 @@ namespace DotNetCore.CAP.PostgreSql
             _timer = new Timer(ExecuteKeepAliveQuery, null, KeepAliveInterval, KeepAliveInterval);
         }
 
-        public bool Status { get; set; }
         public int MessageId { get; }
 
         public MessageType MessageType { get; }
