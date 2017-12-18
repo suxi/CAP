@@ -51,7 +51,7 @@ BeginTransactionAsync()
         {
             if (message == null) throw new ArgumentNullException(nameof(message));
 
-            var sql = $"INSERT INTO `{_prefix}.queue` values(@MessageId,@MessageType);";
+            var sql = $"INSERT INTO `{_prefix}.queue`(`MessageId`,`MessageType`) values(@MessageId,@MessageType);";
             _dbConnection.Execute(sql, new CapQueue {MessageId = message.Id, MessageType = MessageType.Publish},
                 _dbTransaction);
         }
@@ -60,7 +60,7 @@ BeginTransactionAsync()
         {
             if (message == null) throw new ArgumentNullException(nameof(message));
 
-            var sql = $"INSERT INTO `{_prefix}.queue` values(@MessageId,@MessageType);";
+            var sql = $"INSERT INTO `{_prefix}.queue`(`MessageId`,`MessageType`) values(@MessageId,@MessageType);";
             _dbConnection.Execute(sql, new CapQueue {MessageId = message.Id, MessageType = MessageType.Subscribe},
                 _dbTransaction);
         }
